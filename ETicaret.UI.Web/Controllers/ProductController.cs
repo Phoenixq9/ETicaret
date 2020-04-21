@@ -9,15 +9,15 @@ using System.Web.Mvc;
 
 namespace ETicaret.UI.Web.Controllers
 {
-    public class UserController : Controller
+    public class ProductController : Controller
     {
-        private IGenericRepository<User> repository = null;
+        private IGenericRepository<Product> repository = null;
 
-        public UserController()
+        public ProductController()
         {
-            this.repository = new GenericRepository<User>();
+            this.repository = new GenericRepository<Product>();
         }
-        public UserController(IGenericRepository<User> repository)
+        public ProductController(IGenericRepository<Product> repository)
         {
             this.repository = repository;
         }
@@ -28,56 +28,50 @@ namespace ETicaret.UI.Web.Controllers
             var model = repository.GetAll();
             return View(model);
         }
-        [HttpGet]
-        public ActionResult AddUser()
+        public ActionResult AddProduct()
         {
             return View();
         }
-
         [HttpPost]
-        public ActionResult AddUser(User model)
+        public ActionResult AddProduct(Product model)
         {
             if (ModelState.IsValid)
             {
                 repository.Insert(model);
                 repository.Save();
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Product");
             }
             return View();
         }
         [HttpGet]
-        public ActionResult EditUSer(int UserId)
+        public ActionResult EditProduct(int ProductId)
         {
-            User model = repository.GetById(UserId);
+            var model = repository.GetById(ProductId);
             return View(model);
         }
         [HttpPost]
-        public ActionResult EditUser(User model)
+        public ActionResult EditProduct(Product model)
         {
             if (ModelState.IsValid)
             {
                 repository.Update(model);
                 repository.Save();
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Product");
             }
-            //Add metodunda else yok bunda da olmazsa sayfa acılır mı deneyecegiz!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            else
-            {
-                return View(model);
-            }
+            return View(model);
         }
         [HttpGet]
-        public ActionResult DeleteUser(int UserId)
+        public ActionResult DeleteProduct(int ProductId)
         {
-            User model = repository.GetById(UserId);
+            var model = repository.GetById(ProductId);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Delete(int UserID)
+        public ActionResult Delete(Product model)
         {
-            repository.Delete(UserID);
+            repository.Delete(model);
             repository.Save();
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "Product");
         }
     }
 }

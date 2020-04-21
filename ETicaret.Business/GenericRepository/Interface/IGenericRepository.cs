@@ -15,5 +15,6 @@ namespace ETicaret.Business.GenericRepository.Interface
         void Update(T obj);
         void Delete(object id);
         void Save();
+        void Update(Product model);
     }
 }
