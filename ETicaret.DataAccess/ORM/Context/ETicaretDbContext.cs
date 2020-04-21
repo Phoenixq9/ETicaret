@@ -28,5 +28,7 @@ namespace ETicaret.DataAccess.ORM.Context
         DbSet<Basket> Basket { get; set; }
         DbSet<Order> Order { get; set; }
         DbSet<OrderProduct> OrderProduct { get; set; }
+
+        public System.Data.Entity.DbSet<ETicaret.DataAccess.ORM.Entities.UserAddress> UserAddresses { get; set; }
     }
 }

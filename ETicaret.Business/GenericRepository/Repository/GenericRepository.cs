@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ETicaret.DataAccess.ORM.Entities;
 
 namespace ETicaret.Business.GenericRepository.Repository
 {
@@ -50,6 +51,11 @@ namespace ETicaret.Business.GenericRepository.Repository
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        public void Update(Product model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(T obj)
